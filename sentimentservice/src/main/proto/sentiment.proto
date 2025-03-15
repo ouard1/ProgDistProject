@@ -1,0 +1,23 @@
+syntax = "proto3";
+
+option java_multiple_files = true;
+option java_package = "sentiment";
+option java_outer_classname = "SentimentProto";
+
+package sentiment;
+
+// The Sentiment service definition.
+service SentimentService {
+    // Analyze sentiment of a given text.
+    rpc AnalyzeSentiment (SentimentRequest) returns (SentimentResponse);
+}
+
+// The request message containing the text.
+message SentimentRequest {
+    string text = 1;
+}
+
+// The response message containing the sentiment result.
+message SentimentResponse {
+    string sentiment = 1; // "positive", "negative", or "neutral"
+}
