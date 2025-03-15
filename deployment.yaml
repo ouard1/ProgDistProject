@@ -26,6 +26,10 @@ spec:
               value: "root"
             - name: MYSQL_PASSWORD
               value: "mploki78)P"
+            - name: GRPC_CLIENT_SENTIMENT-SERVICE_ADDRESS
+              value: "static://sentiment-service:9090"  
+            - name: GRPC_CLIENT_SENTIMENT-SERVICE_NEGOTIATIONTYPE
+              value: "PLAINTEXT"
 ---
 apiVersion: v1
 kind: Service

@@ -1,0 +1,23 @@
+package com.example.ticketservice.service;
+
+import net.devh.boot.grpc.client.inject.GrpcClient;
+import org.springframework.stereotype.Service;
+import sentiment.SentimentRequest;
+import sentiment.SentimentResponse;
+import sentiment.SentimentServiceGrpc;
+
+@Service
+public class SentimentAnalysisClient {
+
+    @GrpcClient("sentiment-service")
+    private SentimentServiceGrpc.SentimentServiceBlockingStub sentimentServiceStub;
+
+    public String analyzeSentiment(String text) {
+        SentimentRequest request = SentimentRequest.newBuilder()
+                .setText(text)
+                .build();
+        
+        SentimentResponse response = sentimentServiceStub.analyzeSentiment(request);
+        return response.getSentiment();
+    }
+}
