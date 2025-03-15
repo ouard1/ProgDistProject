@@ -1,31 +1,31 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: ticketservice
+  name: authservice
 spec:
   replicas: 1
   selector:
     matchLabels:
-      app: ticketservice
+      app: authservice
   template:
     metadata:
       labels:
-        app: ticketservice
+        app: authservice
     spec:
       containers:
-      - name: ticketservice
-        image: clientsupport-ticket-service:latest
+      - name: authservice
+        image: ouarda658/clientsupport-auth-service:latest  
         ports:
-        - containerPort: 8082
+        - containerPort: 8080
 ---
 apiVersion: v1
 kind: Service
 metadata:
-  name: ticketservice
+  name: authservice
 spec:
   selector:
-    app: ticketservice
+    app: authservice
   ports:
     - protocol: TCP
-      port: 8082
-      targetPort: 8082
+      port: 8080
+      targetPort: 8080

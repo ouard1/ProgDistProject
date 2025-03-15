@@ -1,0 +1,66 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: authservice
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: authservice
+  template:
+    metadata:
+      labels:
+        app: authservice
+    spec:
+      containers:
+      - name: authservice
+        image: ouarda658/clientsupport-auth-service:latest  
+        imagePullPolicy: Always
+---
+
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: ticketservice
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: ticketservice
+  template:
+    metadata:
+      labels:
+        app: ticketservice
+    spec:
+      containers:
+        - name: ticketservice
+          image: ouarda658/clientsupport-ticket-service:latest
+          imagePullPolicy: Always
+---
+
+apiVersion: v1
+kind: Service
+metadata:
+  name: authservice
+spec:
+  ports:
+    - name: http
+      targetPort: 8080
+      port: 80
+  type: NodePort
+  selector:
+    app: authservice
+---
+
+apiVersion: v1
+kind: Service
+metadata:
+  name: ticketservice
+spec:
+  ports:
+    - name: http
+      targetPort: 8080
+      port: 80
+  type: NodePort
+  selector:
+    app: ticketservice

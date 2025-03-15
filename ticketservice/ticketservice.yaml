@@ -1,0 +1,32 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: ticketservice
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: ticketservice
+  template:
+    metadata:
+      labels:
+        app: ticketservice
+    spec:
+      containers:
+      - name: ticketservice
+        image: ouarda658/clientsupport-ticket-service:latest
+        ports:
+        - containerPort: 8082
+        imagePullPolicy: Always
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: ticketservice
+spec:
+  selector:
+    app: ticketservice
+  ports:
+    - protocol: TCP
+      port: 8082
+      targetPort: 8082
