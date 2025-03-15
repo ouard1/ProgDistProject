@@ -3,24 +3,18 @@ kind: Ingress
 metadata:
   name: clientsupport-ingress
   annotations:
-    nginx.ingress.kubernetes.io/rewrite-target: /
+    nginx.ingress.kubernetes.io/use-regex: "true"
+    nginx.ingress.kubernetes.io/rewrite-target: /tickets$1
 spec:
   ingressClassName: nginx
   rules:
   - host: clientsupport.local
     http:
       paths:
-      - path: /authservice
-        pathType: Prefix
-        backend:
-          service:
-            name: authservice  
-            port:
-              number: 8080
-      - path: /ticketservice
-        pathType: Prefix
-        backend:
-          service:
-            name: ticketservice 
-            port:
-              number: 8080
+       - path: /tickets(.*)
+         pathType: ImplementationSpecific
+         backend:
+           service:
+             name: ticketservice 
+             port:
+               number: 80
