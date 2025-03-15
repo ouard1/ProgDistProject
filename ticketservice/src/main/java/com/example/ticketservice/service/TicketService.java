@@ -6,15 +6,18 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.Optional;
 
 @Service
 public class TicketService {
 
     private final TicketRepository ticketRepository;
+    private final SentimentAnalysisClient sentimentAnalysisClient;
 
     @Autowired
-    public TicketService(TicketRepository ticketRepository) {
+    public TicketService(TicketRepository ticketRepository, SentimentAnalysisClient sentimentAnalysisClient) {
         this.ticketRepository = ticketRepository;
+        this.sentimentAnalysisClient = sentimentAnalysisClient;
     }
 
     public List<Ticket> getAllTickets() {
@@ -22,21 +25,23 @@ public class TicketService {
     }
 
     public Ticket getTicketById(Long id) {
-        return ticketRepository.findById(id).orElse(null);
+        Optional<Ticket> ticket = ticketRepository.findById(id);
+        return ticket.orElse(null);
     }
 
     public Ticket createTicket(Ticket ticket) {
+        // Analyze the sentiment of the ticket description
+        String sentiment = sentimentAnalysisClient.analyzeSentiment(ticket.getDescription());
+        // ticket.setSentiment(sentiment);
         return ticketRepository.save(ticket);
     }
 
     public Ticket updateTicket(Long id, Ticket updatedTicket) {
-        return ticketRepository.findById(id).map(existingTicket -> {
-            existingTicket.setTitle(updatedTicket.getTitle());
-            existingTicket.setDescription(updatedTicket.getDescription());
-            existingTicket.setStatus(updatedTicket.getStatus());
-            // Les dates de mise à jour sont gérées par les annotations @PreUpdate
-            return ticketRepository.save(existingTicket);
-        }).orElse(null);
+        if (ticketRepository.existsById(id)) {
+            updatedTicket.setId(id);
+            return ticketRepository.save(updatedTicket);
+        }
+        return null;
     }
 
     public boolean deleteTicket(Long id) {
