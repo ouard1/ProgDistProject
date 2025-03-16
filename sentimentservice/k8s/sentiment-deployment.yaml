@@ -15,7 +15,7 @@ spec:
     spec:
       containers:
       - name: sentimentservice
-        image: ouarda658/sentimentservice-clientsupport:v2
+        image: ouarda658/clientsupport-sentiment-service:v2
         ports:
         - containerPort: 9090
           name: grpc

@@ -1,5 +1,0 @@
-rootProject.name = 'clientsupport'
-
-include 'services:ticketservice'
-include 'services:authservice'
-include 'shared:common-library'
