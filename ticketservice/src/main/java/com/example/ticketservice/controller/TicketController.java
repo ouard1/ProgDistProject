@@ -44,12 +44,21 @@ public class TicketController {
         }
     }
 
-    // Créer un ticket
+    
     @PostMapping
     public ResponseEntity<Ticket> createTicket(@RequestBody Ticket ticket) {
-        Ticket created = ticketService.createTicket(ticket);
-        return ResponseEntity.ok(created);
-    }
+        try {
+            String sentiment = sentimentAnalysisClient.analyzeSentiment(ticket.getDescription());
+            ticket.setSentiment(sentiment);
+        } catch (Exception e) {
+          
+            ticket.setSentiment("neutral");  
+        }
+
+    Ticket created = ticketService.createTicket(ticket);
+    return ResponseEntity.ok(created);
+}
+
 
     // Mettre à jour un ticket
     @PutMapping("/{id}")

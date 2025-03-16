@@ -18,16 +18,24 @@ plugins {
 publishing {
     publications {
         mavenJava(MavenPublication) {
-            groupId = 'com.example' 
-            artifactId = 'sentimentservice-grpc' 
-            version = '1.0.0' 
+            groupId = 'com.example'
+            artifactId = 'sentimentservice-grpc'
+            version = '1.0.0'
             from components.java
         }
     }
     repositories {
-        mavenLocal()
+        maven {
+            name = "GitHubPackages"
+            url = uri("https://maven.pkg.github.com/ouard1/mavenpb")
+            credentials {
+                username = project.findProperty("gpr.user") ?: System.getenv("GITHUB_ACTOR")
+                password = project.findProperty("gpr.token") ?: System.getenv("GITHUB_TOKEN")
+            }
+        }
     }
 }
+
 group = 'com.example'
 version = '0.0.1-SNAPSHOT'
 

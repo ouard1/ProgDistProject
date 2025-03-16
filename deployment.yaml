@@ -14,7 +14,7 @@ spec:
     spec:
       containers:
         - name: ticketservice
-          image: ouarda658/clientsupport-ticket-service:correct
+          image: ouarda658/ticketservice-clientsupport:final1
           env:
             - name: MYSQL_HOST
               value: "mysql"  
