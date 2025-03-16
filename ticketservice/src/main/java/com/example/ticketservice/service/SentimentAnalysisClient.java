@@ -4,10 +4,9 @@ import net.devh.boot.grpc.client.inject.GrpcClient;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Service;
-import sentiment.SentimentRequest;
-import sentiment.SentimentResponse;
-import sentiment.SentimentServiceGrpc;
-
+import com.example.sentimentservice.grpc.SentimentRequest;
+import com.example.sentimentservice.grpc.SentimentResponse;
+import com.example.sentimentservice.grpc.SentimentServiceGrpc;
 @Service
 public class SentimentAnalysisClient {
 

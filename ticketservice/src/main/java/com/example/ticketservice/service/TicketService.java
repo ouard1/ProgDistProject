@@ -1,4 +1,6 @@
 package com.example.ticketservice.service;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 import com.example.ticketservice.model.Ticket;
 import com.example.ticketservice.repository.TicketRepository;
@@ -13,6 +15,8 @@ public class TicketService {
 
     private final TicketRepository ticketRepository;
     private final SentimentAnalysisClient sentimentAnalysisClient;
+    private static final Logger logger = LoggerFactory.getLogger(TicketService.class);
+
 
     @Autowired
     public TicketService(TicketRepository ticketRepository, SentimentAnalysisClient sentimentAnalysisClient) {
@@ -30,11 +34,18 @@ public class TicketService {
     }
 
     public Ticket createTicket(Ticket ticket) {
+        logger.info("Creating ticket with description: {}", ticket.getDescription());
+    
         String sentiment = sentimentAnalysisClient.analyzeSentiment(ticket.getDescription());
-        System.out.println("Sentiment analysis result: " + sentiment); 
+        logger.info("Received sentiment: {}", sentiment);
+    
         ticket.setSentiment(sentiment);
-        return ticketRepository.save(ticket);
+        Ticket savedTicket = ticketRepository.save(ticket);
+        
+        logger.info("Saved ticket: {}", savedTicket);
+        return savedTicket;
     }
+    
     
 
     public Ticket updateTicket(Long id, Ticket updatedTicket) {

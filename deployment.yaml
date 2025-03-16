@@ -14,7 +14,7 @@ spec:
     spec:
       containers:
         - name: ticketservice
-          image: ouarda658/clientsupport-ticket-service:v4
+          image: ouarda658/clientsupport-ticket-service:v7
           env:
             - name: MYSQL_HOST
               value: "mysql"  
@@ -26,9 +26,9 @@ spec:
               value: "root"
             - name: MYSQL_PASSWORD
               value: "mploki78)P"
-            - name: GRPC_CLIENT_SENTIMENT-SERVICE_ADDRESS
-              value: "static://sentimentservice:9090"  
-            - name: GRPC_CLIENT_SENTIMENT-SERVICE_NEGOTIATIONTYPE
+            - name: GRPC_CLIENT_SENTIMENT_SERVICE_ADDRESS
+              value: "static://sentimentservice:9090"
+            - name: GRPC_CLIENT_SENTIMENT_SERVICE_NEGOTIATIONTYPE
               value: "PLAINTEXT"
 ---
 apiVersion: v1

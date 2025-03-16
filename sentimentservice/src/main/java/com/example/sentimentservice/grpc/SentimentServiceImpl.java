@@ -1,3 +1,11 @@
+package com.example.sentimentservice.grpc;
+import com.example.sentimentservice.grpc.SentimentRequest;
+import com.example.sentimentservice.grpc.SentimentResponse;
+import com.example.sentimentservice.grpc.SentimentServiceGrpc;
+import io.grpc.stub.StreamObserver;
+import net.devh.boot.grpc.server.service.GrpcService;
+import java.util.Set;
+
 @GrpcService
 public class SentimentServiceImpl extends SentimentServiceGrpc.SentimentServiceImplBase {
 

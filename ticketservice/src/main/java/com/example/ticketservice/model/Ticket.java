@@ -22,12 +22,13 @@ public class Ticket {
       
     }
 
-    public Ticket(String title, String description, String status) {
+    public Ticket(String title, String description, String status,String sentiment) {
         this.title = title;
         this.description = description;
         this.status = status;
         this.createdAt = LocalDateTime.now();
         this.updatedAt = LocalDateTime.now();
+        this.sentiment = "neutral";
         
     }
 

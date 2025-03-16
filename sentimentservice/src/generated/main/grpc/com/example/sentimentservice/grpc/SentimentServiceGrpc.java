@@ -1,4 +1,4 @@
-package sentiment;
+package com.example.sentimentservice.grpc;
 
 import static io.grpc.MethodDescriptor.generateFullMethodName;
 
@@ -18,29 +18,29 @@ public final class SentimentServiceGrpc {
   public static final java.lang.String SERVICE_NAME = "sentiment.SentimentService";
 
   // Static method descriptors that strictly reflect the proto.
-  private static volatile io.grpc.MethodDescriptor<sentiment.SentimentRequest,
-      sentiment.SentimentResponse> getAnalyzeSentimentMethod;
+  private static volatile io.grpc.MethodDescriptor<com.example.sentimentservice.grpc.SentimentRequest,
+      com.example.sentimentservice.grpc.SentimentResponse> getAnalyzeSentimentMethod;
 
   @io.grpc.stub.annotations.RpcMethod(
       fullMethodName = SERVICE_NAME + '/' + "AnalyzeSentiment",
-      requestType = sentiment.SentimentRequest.class,
-      responseType = sentiment.SentimentResponse.class,
+      requestType = com.example.sentimentservice.grpc.SentimentRequest.class,
+      responseType = com.example.sentimentservice.grpc.SentimentResponse.class,
       methodType = io.grpc.MethodDescriptor.MethodType.UNARY)
-  public static io.grpc.MethodDescriptor<sentiment.SentimentRequest,
-      sentiment.SentimentResponse> getAnalyzeSentimentMethod() {
-    io.grpc.MethodDescriptor<sentiment.SentimentRequest, sentiment.SentimentResponse> getAnalyzeSentimentMethod;
+  public static io.grpc.MethodDescriptor<com.example.sentimentservice.grpc.SentimentRequest,
+      com.example.sentimentservice.grpc.SentimentResponse> getAnalyzeSentimentMethod() {
+    io.grpc.MethodDescriptor<com.example.sentimentservice.grpc.SentimentRequest, com.example.sentimentservice.grpc.SentimentResponse> getAnalyzeSentimentMethod;
     if ((getAnalyzeSentimentMethod = SentimentServiceGrpc.getAnalyzeSentimentMethod) == null) {
       synchronized (SentimentServiceGrpc.class) {
         if ((getAnalyzeSentimentMethod = SentimentServiceGrpc.getAnalyzeSentimentMethod) == null) {
           SentimentServiceGrpc.getAnalyzeSentimentMethod = getAnalyzeSentimentMethod =
-              io.grpc.MethodDescriptor.<sentiment.SentimentRequest, sentiment.SentimentResponse>newBuilder()
+              io.grpc.MethodDescriptor.<com.example.sentimentservice.grpc.SentimentRequest, com.example.sentimentservice.grpc.SentimentResponse>newBuilder()
               .setType(io.grpc.MethodDescriptor.MethodType.UNARY)
               .setFullMethodName(generateFullMethodName(SERVICE_NAME, "AnalyzeSentiment"))
               .setSampledToLocalTracing(true)
               .setRequestMarshaller(io.grpc.protobuf.ProtoUtils.marshaller(
-                  sentiment.SentimentRequest.getDefaultInstance()))
+                  com.example.sentimentservice.grpc.SentimentRequest.getDefaultInstance()))
               .setResponseMarshaller(io.grpc.protobuf.ProtoUtils.marshaller(
-                  sentiment.SentimentResponse.getDefaultInstance()))
+                  com.example.sentimentservice.grpc.SentimentResponse.getDefaultInstance()))
               .setSchemaDescriptor(new SentimentServiceMethodDescriptorSupplier("AnalyzeSentiment"))
               .build();
         }
@@ -105,8 +105,8 @@ public final class SentimentServiceGrpc {
      * Analyze sentiment of a given text.
      * </pre>
      */
-    default void analyzeSentiment(sentiment.SentimentRequest request,
-        io.grpc.stub.StreamObserver<sentiment.SentimentResponse> responseObserver) {
+    default void analyzeSentiment(com.example.sentimentservice.grpc.SentimentRequest request,
+        io.grpc.stub.StreamObserver<com.example.sentimentservice.grpc.SentimentResponse> responseObserver) {
       io.grpc.stub.ServerCalls.asyncUnimplementedUnaryCall(getAnalyzeSentimentMethod(), responseObserver);
     }
   }
@@ -149,8 +149,8 @@ public final class SentimentServiceGrpc {
      * Analyze sentiment of a given text.
      * </pre>
      */
-    public void analyzeSentiment(sentiment.SentimentRequest request,
-        io.grpc.stub.StreamObserver<sentiment.SentimentResponse> responseObserver) {
+    public void analyzeSentiment(com.example.sentimentservice.grpc.SentimentRequest request,
+        io.grpc.stub.StreamObserver<com.example.sentimentservice.grpc.SentimentResponse> responseObserver) {
       io.grpc.stub.ClientCalls.asyncUnaryCall(
           getChannel().newCall(getAnalyzeSentimentMethod(), getCallOptions()), request, responseObserver);
     }
@@ -180,7 +180,7 @@ public final class SentimentServiceGrpc {
      * Analyze sentiment of a given text.
      * </pre>
      */
-    public sentiment.SentimentResponse analyzeSentiment(sentiment.SentimentRequest request) {
+    public com.example.sentimentservice.grpc.SentimentResponse analyzeSentiment(com.example.sentimentservice.grpc.SentimentRequest request) {
       return io.grpc.stub.ClientCalls.blockingUnaryCall(
           getChannel(), getAnalyzeSentimentMethod(), getCallOptions(), request);
     }
@@ -210,8 +210,8 @@ public final class SentimentServiceGrpc {
      * Analyze sentiment of a given text.
      * </pre>
      */
-    public com.google.common.util.concurrent.ListenableFuture<sentiment.SentimentResponse> analyzeSentiment(
-        sentiment.SentimentRequest request) {
+    public com.google.common.util.concurrent.ListenableFuture<com.example.sentimentservice.grpc.SentimentResponse> analyzeSentiment(
+        com.example.sentimentservice.grpc.SentimentRequest request) {
       return io.grpc.stub.ClientCalls.futureUnaryCall(
           getChannel().newCall(getAnalyzeSentimentMethod(), getCallOptions()), request);
     }
@@ -237,8 +237,8 @@ public final class SentimentServiceGrpc {
     public void invoke(Req request, io.grpc.stub.StreamObserver<Resp> responseObserver) {
       switch (methodId) {
         case METHODID_ANALYZE_SENTIMENT:
-          serviceImpl.analyzeSentiment((sentiment.SentimentRequest) request,
-              (io.grpc.stub.StreamObserver<sentiment.SentimentResponse>) responseObserver);
+          serviceImpl.analyzeSentiment((com.example.sentimentservice.grpc.SentimentRequest) request,
+              (io.grpc.stub.StreamObserver<com.example.sentimentservice.grpc.SentimentResponse>) responseObserver);
           break;
         default:
           throw new AssertionError();
@@ -262,8 +262,8 @@ public final class SentimentServiceGrpc {
           getAnalyzeSentimentMethod(),
           io.grpc.stub.ServerCalls.asyncUnaryCall(
             new MethodHandlers<
-              sentiment.SentimentRequest,
-              sentiment.SentimentResponse>(
+              com.example.sentimentservice.grpc.SentimentRequest,
+              com.example.sentimentservice.grpc.SentimentResponse>(
                 service, METHODID_ANALYZE_SENTIMENT)))
         .build();
   }
@@ -274,7 +274,7 @@ public final class SentimentServiceGrpc {
 
     @java.lang.Override
     public com.google.protobuf.Descriptors.FileDescriptor getFileDescriptor() {
-      return sentiment.SentimentProto.getDescriptor();
+      return com.example.sentimentservice.grpc.SentimentProto.getDescriptor();
     }
 
     @java.lang.Override

@@ -15,7 +15,7 @@ spec:
     spec:
       containers:
       - name: sentimentservice
-        image: ouarda658/clientsupport-sentiment-service:v1
+        image: ouarda658/clientsupport-sentiment-service:v3
         ports:
         - containerPort: 9090
           name: grpc
@@ -26,3 +26,8 @@ spec:
           limits:
             memory: "1Gi"
             cpu: "500m"
+        env:
+        - name: SPRING_PROFILES_ACTIVE
+          value: "production"
+        - name: LOGGING_LEVEL_ROOT
+          value: "INFO"
