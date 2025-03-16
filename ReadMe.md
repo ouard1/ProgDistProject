@@ -36,3 +36,5 @@ The following Docker images are used for the services:
 - **sentimentservice**: `ouarda658/clientsupport-sentiment-service:v2`
 - **ticketservice**: `ouarda658/ticketservice-clientsupport:final1`
 - **authservice**: `ouarda658/clientsupport-auth-service:v1`
+
+nb : pour utiliser le code il faut copié le repo https://maven.pkg.github.com/ouard1/mavenpb et créer une clé d'accés dans gradle.properties
