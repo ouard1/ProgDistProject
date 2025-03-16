@@ -1,0 +1,28 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: ticketservice
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: ticketservice
+  template:
+    metadata:
+      labels:
+        app: ticketservice
+    spec:
+      containers:
+        - name: ticketservice
+          image: ouarda658/clientsupport-ticket-service:latest
+          env:
+            - name: MYSQL_HOST
+              value: "mysql"  
+            - name: MYSQL_PORT
+              value: "3306"
+            - name: MYSQL_DB_NAME
+              value: "clientsatisfaction"
+            - name: MYSQL_USER
+              value: "root"
+            - name: MYSQL_PASSWORD
+              value: "mploki78)P"

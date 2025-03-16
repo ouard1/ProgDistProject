@@ -1,0 +1,89 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: ticketservice
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: ticketservice
+  template:
+    metadata:
+      labels:
+        app: ticketservice
+    spec:
+      containers:
+        - name: ticketservice
+          image: ouarda658/clientsupport-ticket-service:correct
+          env:
+            - name: MYSQL_HOST
+              value: "mysql"  
+            - name: MYSQL_PORT
+              value: "3306"
+            - name: MYSQL_DB_NAME
+              value: "clientsatisfaction"
+            - name: MYSQL_USER
+              value: "root"
+            - name: MYSQL_PASSWORD
+              value: "mploki78)P"
+            - name: GRPC_CLIENT_SENTIMENTSERVICE_ADDRESS
+              value: "static://sentimentservice:9090"
+            - name: GRPC_CLIENT_SENTIMENTSERVICE_NEGOTIATIONTYPE
+              value: "PLAINTEXT"
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: ticketservice
+spec:
+  type: NodePort
+  ports:
+    - name: http
+      targetPort: 8080
+      port: 80
+      nodePort: 30002
+  selector:
+    app: ticketservice
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: authservice
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: authservice
+  template:
+    metadata:
+      labels:
+        app: authservice
+    spec:
+      containers:
+        - name: authservice
+          image: ouarda658/clientsupport-auth-service:v1
+          env:
+            - name: MYSQL_HOST
+              value: "mysql"  
+            - name: MYSQL_PORT
+              value: "3306"
+            - name: MYSQL_DB_NAME
+              value: "clientsatisfaction"
+            - name: MYSQL_USER
+              value: "root"
+            - name: MYSQL_PASSWORD
+              value: "mploki78)P"
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: authservice
+spec:
+  type : NodePort
+  ports:
+    - name: http
+      targetPort: 8080
+      port: 80
+      nodePort: 30001
+  selector:
+    app: authservice

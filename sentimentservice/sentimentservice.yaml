@@ -1,0 +1,13 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: sentimentservice
+spec:
+  selector:
+    app: sentimentservice
+  ports:
+  - port: 9090
+    name : grpc
+    targetPort: 9090
+    protocol: TCP
+  type: ClusterIP

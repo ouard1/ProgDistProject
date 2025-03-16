@@ -1,0 +1,33 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: sentimentservice
+  labels:
+    app: sentimentservice
+spec:
+  selector:
+    matchLabels:
+      app: sentimentservice
+  template:
+    metadata:
+      labels:
+        app: sentimentservice
+    spec:
+      containers:
+      - name: sentimentservice
+        image: ouarda658/clientsupport-sentiment-service:v3
+        ports:
+        - containerPort: 9090
+          name: grpc
+        resources:
+          requests:
+            memory: "512Mi"
+            cpu: "250m"
+          limits:
+            memory: "1Gi"
+            cpu: "500m"
+        env:
+        - name: SPRING_PROFILES_ACTIVE
+          value: "production"
+        - name: LOGGING_LEVEL_ROOT
+          value: "INFO"
