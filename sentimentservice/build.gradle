@@ -13,8 +13,21 @@ plugins {
 	id 'java-library'
 	id 'com.google.protobuf' version "${protobufPluginVersion}"
 	id 'com.github.ben-manes.versions' version '0.50.0'
+    id 'maven-publish'
 }
-
+publishing {
+    publications {
+        mavenJava(MavenPublication) {
+            groupId = 'com.example' 
+            artifactId = 'sentimentservice-grpc' 
+            version = '1.0.0' 
+            from components.java
+        }
+    }
+    repositories {
+        mavenLocal()
+    }
+}
 group = 'com.example'
 version = '0.0.1-SNAPSHOT'
 

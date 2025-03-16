@@ -1,5 +1,4 @@
 package com.example.ticketservice.service;
-
 import net.devh.boot.grpc.client.inject.GrpcClient;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;

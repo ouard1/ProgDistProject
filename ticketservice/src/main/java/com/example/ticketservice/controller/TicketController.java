@@ -1,5 +1,5 @@
 package com.example.ticketservice.controller;
-
+import com.example.ticketservice.service.SentimentAnalysisClient;
 import com.example.ticketservice.model.Ticket;
 import com.example.ticketservice.service.TicketService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -17,10 +17,16 @@ public class TicketController {
     private final SentimentAnalysisClient sentimentAnalysisClient;
     
     @Autowired
-    public TicketController(TicketService ticketService) {
+    public TicketController(TicketService ticketService, SentimentAnalysisClient sentimentAnalysisClient) {
         this.ticketService = ticketService;
+        this.sentimentAnalysisClient = sentimentAnalysisClient;
     }
 
+
+    @GetMapping("/sentiment/{text}")
+    public String getSentiment(@PathVariable String text) {
+        return sentimentAnalysisClient.analyzeSentiment(text);
+    }
     // Récupérer tous les tickets
     @GetMapping
     public List<Ticket> getAllTickets() {
