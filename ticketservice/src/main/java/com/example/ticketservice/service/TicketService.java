@@ -30,11 +30,12 @@ public class TicketService {
     }
 
     public Ticket createTicket(Ticket ticket) {
-        // Analyze the sentiment of the ticket description
         String sentiment = sentimentAnalysisClient.analyzeSentiment(ticket.getDescription());
-        // ticket.setSentiment(sentiment);
+        System.out.println("Sentiment analysis result: " + sentiment); 
+        ticket.setSentiment(sentiment);
         return ticketRepository.save(ticket);
     }
+    
 
     public Ticket updateTicket(Long id, Ticket updatedTicket) {
         if (ticketRepository.existsById(id)) {

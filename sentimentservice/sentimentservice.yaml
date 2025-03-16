@@ -7,6 +7,7 @@ spec:
     app: sentimentservice
   ports:
   - port: 9090
+    name : grpc
     targetPort: 9090
     protocol: TCP
   type: ClusterIP

@@ -1,43 +1,28 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: sentiment-service
+  name: sentimentservice
   labels:
-    app: sentiment-service
+    app: sentimentservice
 spec:
   selector:
     matchLabels:
-      app: sentiment-service
+      app: sentimentservice
   template:
     metadata:
       labels:
-        app: sentiment-service
+        app: sentimentservice
     spec:
       containers:
-      - name: sentiment-service
-        image: ouarda658/sentiment-service:latest 
+      - name: sentimentservice
+        image: ouarda658/clientsupport-sentiment-service:v1
         ports:
         - containerPort: 9090
           name: grpc
         resources:
           requests:
-            memory: "256Mi"
-            cpu: "100m"
-          limits:
             memory: "512Mi"
+            cpu: "250m"
+          limits:
+            memory: "1Gi"
             cpu: "500m"
-        readinessProbe:  
-          exec:
-            command: ["/bin/grpc_health_probe", "-addr=:9090"]
-          initialDelaySeconds: 10
-          periodSeconds: 10
-        livenessProbe:  
-          exec:
-            command: ["/bin/grpc_health_probe", "-addr=:9090"]
-          initialDelaySeconds: 20
-          periodSeconds: 15
-        env:
-        - name: SPRING_PROFILES_ACTIVE
-          value: "prod"  
-        - name: JAVA_OPTS
-          value: "-XX:+UseG1GC -XX:MaxGCPauseMillis=100 -Xmx384m"  

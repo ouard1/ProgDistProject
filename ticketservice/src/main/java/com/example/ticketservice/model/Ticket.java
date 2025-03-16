@@ -16,6 +16,7 @@ public class Ticket {
     private String status; //  "OPEN", "IN_PROGRESS", "CLOSED"
     private LocalDateTime createdAt;
     private LocalDateTime updatedAt;
+    private String sentiment;
 
     public Ticket() {
       
@@ -27,6 +28,7 @@ public class Ticket {
         this.status = status;
         this.createdAt = LocalDateTime.now();
         this.updatedAt = LocalDateTime.now();
+        
     }
 
     @PrePersist
@@ -58,4 +60,12 @@ public class Ticket {
 
     public LocalDateTime getUpdatedAt() { return updatedAt; }
     public void setUpdatedAt(LocalDateTime updatedAt) { this.updatedAt = updatedAt; }
+  
+    public String getSentiment() {
+        return sentiment;
+    }
+
+    public void setSentiment(String sentiment) {
+        this.sentiment = sentiment;
+    }
 }

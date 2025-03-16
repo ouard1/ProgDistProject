@@ -1,18 +1,6 @@
-package com.example.sentimentservice.grpc;
-
-import io.grpc.stub.StreamObserver;
-import net.devh.boot.grpc.server.service.GrpcService;
-import sentiment.SentimentProto;
-import sentiment.SentimentRequest;
-import sentiment.SentimentResponse;
-import sentiment.SentimentServiceGrpc;
-
-import java.util.Set;
-
 @GrpcService
 public class SentimentServiceImpl extends SentimentServiceGrpc.SentimentServiceImplBase {
 
-    // test set for analysis
     private final Set<String> positiveWords = Set.of("good", "great", "excellent", "happy", "awesome");
     private final Set<String> negativeWords = Set.of("bad", "terrible", "poor", "sad", "awful");
 

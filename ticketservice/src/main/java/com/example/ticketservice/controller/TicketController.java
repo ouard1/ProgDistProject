@@ -14,6 +14,7 @@ import java.util.List;
 public class TicketController {
 
     private final TicketService ticketService;
+    private final SentimentAnalysisClient sentimentAnalysisClient;
     
     @Autowired
     public TicketController(TicketService ticketService) {
